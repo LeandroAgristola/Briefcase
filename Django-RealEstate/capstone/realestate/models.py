@@ -1,49 +1,49 @@
 from django.db import models
 import os
 
-# Model representing a development project
+# Modelo que representa un proyecto de desarrollo
 class development(models.Model):
-    # Title of the development, limited to 50 characters
+    # Título del desarrollo, limitado a 50 caracteres
     title = models.CharField(max_length=50)
     
-    # Short description or content about the development, limited to 200 characters
+    # Descripción corta o contenido sobre el desarrollo, limitado a 200 caracteres
     content = models.CharField(max_length=200)
-    
-    # Image associated with the development, stored in the 'developments' directory
+
+    # Imagen asociada con el desarrollo, almacenada en el directorio 'developments'
     image = models.ImageField(upload_to='developments')
     
-    # Brochure or PDF file associated with the development, stored in 'developments_pdfs/' directory
+    # Archivo de folleto o PDF asociado con el desarrollo, almacenado en el directorio 'developments_pdfs/'
     brochurePaper = models.FileField(upload_to='developments_pdfs/')
     
-    # Timestamp for when the development was created, automatically set on creation
+# Marca de tiempo de cuándo se creó el desarrollo, se establece automáticamente al crearse
     created = models.DateTimeField(auto_now_add=True)
-    
-    # Timestamp for when the development was last updated, automatically set on save
+
+    # Marca de tiempo de cuándo se actualizó por última vez el desarrollo, se establece automáticamente al guardarse
     updated = models.DateTimeField(auto_now=True)
 
-    # Meta options for the model
+    # Opciones meta para el modelo
     class Meta:
-        # Singular name for the model in the admin interface
+        # Nombre singular para el modelo en la interfaz de administración
         verbose_name = 'development'
-        
-        # Plural name for the model in the admin interface
+
+        # Nombre plural para el modelo en la interfaz de administración
         verbose_name_plural = 'developments'
 
-    # String representation of the model, showing the title
+   # Representación de cadena del modelo, que muestra el título
     def __str__(self):
         return self.title
-    
-    # Custom delete method to remove associated files from the filesystem
+
+    # Método de eliminación personalizado para eliminar archivos asociados del sistema de archivos
     def delete(self, *args, **kwargs):
-        # If an image exists, remove it from the filesystem
+        # Si existe una imagen, eliminarla del sistema de archivos
         if self.image:
             if os.path.isfile(self.image.path):
                 os.remove(self.image.path)
-        
-        # If a brochure or PDF file exists, remove it from the filesystem
+
+        # Si existe un archivo de folleto o PDF, eliminarlo del sistema de archivos
         if self.brochurePaper:
             if os.path.isfile(self.brochurePaper.path):
                 os.remove(self.brochurePaper.path)
-        
-        # Call the parent class's delete method to remove the model instance from the database
+
+        # Llama al método de eliminación de la clase padre para eliminar la instancia del modelo de la base de datos
         super().delete(*args, **kwargs)

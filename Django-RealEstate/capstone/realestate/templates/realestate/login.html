@@ -1,77 +1,77 @@
-<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
-<html lang="es-ES"> <!-- Set the language of the document to Spanish (Spain) -->
+<!DOCTYPE html> <!-- Declara el tipo de documento como HTML5 -->
+<html lang="es-ES"> <!-- Establece el idioma del documento como español (España) -->
 
 <head>
-    {% load static %} <!-- Loads the static template tag, which allows access to static files like CSS, JS, images, etc. -->
-    
-    <meta charset="utf-8"> <!-- Specifies the character encoding for the HTML document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on mobile devices -->
-    <meta name="description" content=""> <!-- Meta tag for the description of the page (empty for now) -->
-    
-    <!-- Preconnect to external font providers -->
+    {% load static %} <!-- Carga la etiqueta de plantilla estática, que permite el acceso a archivos estáticos como CSS, JS, imágenes, etc. -->
+
+    <meta charset="utf-8"> <!-- Especifica la codificación de caracteres para el documento HTML -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Asegura que la página sea receptiva en dispositivos móviles -->
+    <meta name="description" content=""> <!-- Meta etiqueta para la descripción de la página (vacía por ahora) -->
+
+    <!-- Preconectar a proveedores de fuentes externas -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    
-    <!-- Link to Google Fonts for Lato font -->
+
+    <!-- Enlace a Google Fonts para la fuente Lato -->
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
 
-    <!-- Block to insert additional CSS links -->
+   <!-- Bloque para insertar enlaces CSS adicionales -->
     {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}">  <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styleManagement.css' %}">  <!-- Custom management style CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleManagement.css' %}">  <!-- Estilo de gestión personalizado CSS -->
     {% endblock %}
 
-    <!-- Favicon for the website -->
+   <!-- Favicon para el sitio web -->
     <link rel="icon" type="image/x-icon" href="{% static 'logo/favicon.ico' %}">
-    
-    <!-- Link to Font Awesome for icons -->
+
+    <!-- Enlace a Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" /> 
-    
-    <!-- Title block, allows the page title to be overwritten in child templates -->
+
+    <!-- Bloque de título, permite que el título de la página sea sobrescrito en plantillas secundarias -->
     <title>{% block title %}Realestate Management{% endblock %}</title>
 </head>
 
-<body class="login-page"> <!-- Body with class 'login-page' for specific styling -->
+<body class="login-page"> <!-- Cuerpo con clase 'login-page' para estilo específico -->
 
-    <!-- Main container for the login page, centered both vertically and horizontally -->
+    <!-- Contenedor principal para la página de inicio de sesión, centrado vertical y horizontalmente -->
     <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-        <div id="development-form" class="p-4 rounded shadow"> <!-- Form container with padding, rounded corners, and shadow -->
-            
-            <!-- Logo and title section -->
+        <div id="development-form" class="p-4 rounded shadow"> <!-- Contenedor del formulario con padding, bordes redondeados y sombra -->
+
+            <!-- Sección de logotipo y título -->
             <div class="d-flex align-items-center justify-content-center gap-2 mb-4">
-                <img src="{% static 'logo/logo.png' %}" alt="logo" class="logo-img" style="max-width: 200px;"> <!-- Logo image -->
+                <img src="{% static 'logo/logo.png' %}" alt="logo" class="logo-img" style="max-width: 200px;"> <!-- Logo imagen -->
                 <div>
-                    <h1 class="text-center logo-text">Realestate</h1> <!-- Main title -->
-                    <h4 class="text-center">Management</h4> <!-- Subtitle for the page -->
+                    <h1 class="text-center logo-text">Realestate</h1> <!-- Título principal -->
+                    <h4 class="text-center">Management</h4> <!-- Subtítulo de la página -->
                 </div>
             </div>
 
-            <!-- Display an error message if it exists -->
+            <!-- Mostrar un mensaje de error si existe -->
             {% if message %}
-                <div class="alert alert-danger">{{ message }}</div> <!-- Error message displayed in red -->
+                <div class="alert alert-danger">{{ message }}</div> <!-- Mensaje de error mostrado en rojo -->
             {% endif %}
 
-            <!-- Login form that posts to the login URL -->
+            <!-- Formulario de inicio de sesión que envía datos a la URL de inicio de sesión -->
             <form action="{% url 'login' %}" method="post" class="w-100"> 
                 {% csrf_token %} <!-- CSRF token for security -->
-                
-                <!-- Username input field -->
+
+                <!-- Campo de entrada de nombre de usuario -->
                 <div class="mb-3">
-                    <label for="username">Username</label> <!-- Label for the username field -->
-                    <input autofocus class="form-control" type="text" name="username" id="username" placeholder="Enter your username"> <!-- Username input -->
+                    <label for="username">Nombre de usuario</label> <!-- Label for the username field -->
+                    <input autofocus class="form-control" type="text" name="username" id="username" placeholder="Ingrese su nombre de usuario"> <!-- Username input -->
                 </div>
 
-                <!-- Password input field -->
+                <!-- Campo de entrada de contraseña -->
                 <div class="mb-3">
-                    <label for="password">Password</label> <!-- Label for the password field -->
-                    <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password"> <!-- Password input -->
+                    <label for="password">Contraseña</label> <!-- Label for the password field -->
+                    <input class="form-control" type="password" name="password" id="password" placeholder="Ingrese su contraseña"> <!-- Password input -->
                 </div>
 
-                <!-- Submit button for the login form -->
+                <!-- Botón de envío para el formulario de inicio de sesión -->
                 <div class="d-flex justify-content-center">
-                    <input class="btn" type="submit" value="Login"> <!-- Login button -->
+                    <input class="btn" type="submit" value="Iniciar sesión"> <!-- Botón de inicio de sesión -->
                 </div>
             </form>
         </div>

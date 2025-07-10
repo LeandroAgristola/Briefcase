@@ -1,36 +1,36 @@
 {% extends "realestate/layout.html" %} 
-<!-- Extends the base template "layout.html" from the 'realestate' app -->
+<!-- Casilla de verificación para cada desarrollo -->
 
 {% load static %} 
-<!-- Loads the static files tag to access static assets like images or CSS -->
+<!-- Carga la etiqueta de archivos estáticos para acceder a activos estáticos como imágenes o CSS -->
 
-{% block content %} 
-<!-- Defines the content block where the page-specific content will be inserted -->
+{% block content %}
+<!-- Define el bloque de contenido donde se insertará el contenido específico de la página -->
 
 <section id="serieMobile" style="background-image:url('/static/img/building.jpg');">
-    <!-- Section with a custom ID 'serieMobile' and an inline background image applied -->
+<!-- Sección con un ID personalizado 'serieMobile' y una imagen de fondo en línea aplicada -->
     <div class="container text-center py-5" id="containerMobile">
-        <!-- Container centered with padding for spacing and custom ID 'containerMobile' -->
-        
+        <!-- Contenedor centrado con padding para el espaciado y un ID personalizado 'containerMobile' -->
+
         <div class="card text-center text-white" id=cardMobile>
-            <!-- Bootstrap card component with centered white text and a custom ID 'cardMobile' -->
-            
+            <!-- Componente de tarjeta de Bootstrap con texto blanco centrado y un ID personalizado 'cardMobile' -->
+
             <div class="card-body d-flex flex-column text-center" id=card-bodyMobile>
-                <!-- Card body with flexbox properties for column alignment and custom ID 'card-bodyMobile' -->
-                
-                <h3 class="card-title" id=card-titleMobile>Building</h3>
-                <!-- Card title with a custom ID 'card-titleMobile' -->
-                
+                <!-- Cuerpo de la tarjeta con propiedades de flexbox para la alineación en columna y un ID personalizado 'card-bodyMobile' -->
+
+                <h3 class="card-title" id=card-titleMobile>Edificios</h3>
+                <!-- Título de la tarjeta con un ID personalizado 'card-titleMobile' -->
+
                 <p class="card-text" id=card-textMobile>
-                    <!-- Card text with a custom ID 'card-textMobile' -->
-                    We develop exclusive Premium residential buildings. We offer the possibility of accessing units in zero list (at cost):
-                    at a fixed price, without CAC adjustments, without real estate commissions. Work with low construction and financial risk,
-                    with short construction times due to having an already approved project.
+                    <!-- Texto de la tarjeta con un ID personalizado 'card-textMobile' -->
+                   Desarrollamos exclusivos edificios residenciales premium. Ofrecemos la posibilidad de acceder a unidades en lista cero (al precio de costo):
+                    a precio fijo, sin ajustes del CAC, sin comisiones inmobiliarias. Trabajamos con bajo riesgo de construcción y financiero,
+                    con plazos de construcción cortos gracias a un proyecto ya aprobado.
                 </p>
                 
                 <a href="{% url 'home' %}#serie" class="btn btn-light mt-3">
-                    <!-- Link styled as a light Bootstrap button that redirects to the "serie" section on the 'home' page -->
-                    Return
+                    <!-- Enlace estilizado como un botón de Bootstrap ligero que redirige a la sección "serie" en la página 'home' -->
+                    Regresar
                 </a>
             </div>
         </div>

@@ -1,55 +1,55 @@
-{% extends "realestate/layout_development.html" %} <!-- Inherit the layout from 'layout_development.html' template -->
+{% extends "realestate/layout_development.html" %} <!-- Heredar el diseño de la plantilla 'layout_development.html' -->
 
-{% block content %} <!-- Define the content block for this page -->
+{% block content %} <!-- Define el bloque de contenido para esta página -->
 
-<div class="container mt-5"> <!-- Container for the page content with margin-top -->
-    <h1 class="text-center mb-4 logo-text">Development Lists</h1> <!-- Page title centered with bottom margin -->
+<div class="container mt-5"> <!-- Contenedor para el contenido de la página con margen superior -->
+    <h1 class="text-center mb-4 logo-text">Listas de Desarrollo</h1> <!-- Título de la página centrado con margen inferior -->
 
-    <!-- Form to submit selected developments for management -->
+    <!-- Formulario para enviar desarrollos seleccionados para su gestión -->
     <form method="post" action="{% url 'management' %}"> 
-        {% csrf_token %} <!-- Django CSRF token for security -->
+        {% csrf_token %} <!-- Token CSRF de Django para seguridad -->
 
-        <ul class="list-group"> <!-- Start of the list group for displaying developments -->
-            <!-- List item header for the table -->
+        <ul class="list-group"> <!-- Inicio del grupo de lista para mostrar desarrollos -->
+            <!-- Encabezado del elemento de lista para la tabla -->
             <li class="list-group-item d-flex justify-content-between align-items-center fw-bold bg-light">
-                <div class="col-1">Select</div> <!-- Column for the checkbox -->
-                <div class="col-3">Title</div> <!-- Column for the development title -->
-                <div class="col-7">Content</div> <!-- Column for the development content -->
-                <div class="col-1">Actions</div> <!-- Column for the action buttons (e.g., edit) -->
+                <div class="col-1">Seleccionar</div> <!-- Columna para la casilla de verificación -->
+                <div class="col-3">Título</div> <!-- Columna para el título del desarrollo -->
+                <div class="col-7">Contenido</div> <!-- Columna para el contenido del desarrollo -->
+                <div class="col-1">Acciones</div> <!-- Columna para los botones de acción (por ejemplo, editar) -->
             </li>
 
-            <!-- Loop through each development in 'developments' -->
+            <!-- Recorrer cada desarrollo en 'desarrollos' -->
             {% for dev in developments %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div class="col-1">
-                    <input type="checkbox" name="development_ids" value="{{ dev.id }}"> <!-- Checkbox for each development -->
+                    <input type="checkbox" name="development_ids" value="{{ dev.id }}"> <!-- Casilla de verificación para cada desarrollo -->
                 </div>
                 <div class="col-3">
-                    <strong>{{ dev.title }}</strong> <!-- Display the title of the development -->
+                    <strong>{{ dev.title }}</strong> <!-- Mostrar el título del desarrollo -->
                 </div>
                 <div class="col-7">
-                    <p class="mb-0 text-truncate" title="{{ dev.content }}">{{ dev.content }}</p> <!-- Display the content with truncation and tooltip for overflow -->
+                    <p class="mb-0 text-truncate" title="{{ dev.content }}">{{ dev.content }}</p> <!-- Mostrar el contenido con truncamiento y tooltip para desbordamiento -->
                 </div>
                 <div class="col-1">
-                    <!-- Edit button linked to the 'edit_development' URL with the development's id -->
+                    <!-- Botón de edición vinculado a la URL 'edit_development' con el id del desarrollo -->
                     <a href="{% url 'edit_development' dev.id %}" class="edit-btn">
-                        Edit
+                        Editar
                     </a>
                 </div>
             </li>
             {% empty %} <!-- If there are no developments -->
             <li class="list-group-item text-center">
-                There are no developments available. <!-- Message indicating no developments -->
+                No hay desarrollos disponibles. <!-- Mensaje que indica que no hay desarrollos -->
             </li>
             {% endfor %}
         </ul>
 
-        <!-- Delete button container that appears if at least one checkbox is selected -->
+        <!-- Contenedor del botón de eliminar que aparece si se selecciona al menos una casilla de verificación -->
         <div class="mt-3" id="delete-button-container" style="display: none;">
-            <!-- Button to delete selected developments, with a confirmation prompt -->
+            <!-- Botón para eliminar desarrollos seleccionados, con un aviso de confirmación -->
             <button type="submit" name="delete" class="btn btn-danger"
-                onclick="return confirm('Are you sure you want to delete the selected developments?');">
-                Delete selected
+                onclick="return confirm('¿Está seguro de que desea eliminar los desarrollos seleccionados?');">
+                Eliminar seleccionados
             </button>
         </div>
     </form>

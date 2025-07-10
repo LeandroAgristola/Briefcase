@@ -3,34 +3,34 @@ from realestate import views
 from django.conf import settings 
 from django.conf.urls.static import static
 
-# URL patterns for the project
+# Patrones de URL para el proyecto
 urlpatterns = [
-    # Home page route, linked to the home view
+    # Ruta de la página de inicio, vinculada a la vista de inicio
     path('', views.home, name="home"),
-    
-    # Login page route, linked to the login view
+
+    # Ruta de la página de inicio de sesión, vinculada a la vista de inicio de sesión
     path("login", views.login_view, name="login"),
-    
-    # Logout page route, linked to the logout view
+
+    # Ruta de la página de cierre de sesión, vinculada a la vista de cierre de sesión
     path("logout", views.logout_view, name="logout"),
-    
-    # Management page route, linked to the management view (admin section)
+
+    # Ruta de la página de gestión, vinculada a la vista de gestión (sección de administración)
     path('management/', views.management, name='management'),
-    
-    # Add a new development project page route, linked to the add_development view
+
+    # Ruta para agregar un nuevo proyecto de desarrollo, vinculada a la vista add_development
     path('management/add/', views.add_development_view, name='add_development'),
-    
-    # Edit an existing development project page route, linked to the edit_development view
-    # The <int:dev_id> part of the path allows for dynamic handling of development IDs
+
+    # Ruta para editar un proyecto de desarrollo existente, vinculada a la vista edit_development
+    # La parte <int:dev_id> de la ruta permite el manejo dinámico de los ID de desarrollo
     path('management/edit/<int:dev_id>/', views.edit_development, name='edit_development'),
-    
-    # Routes for different types of mobile properties
+
+    # Rutas para diferentes tipos de propiedades móviles
     path('mobiledDwelling/', views.mobiledDwelling, name='mobiledDwelling'),
     path('mobileBuildings/', views.mobileBuildings, name='mobileBuildings'),
     path('mobileIndustries/', views.mobileIndustries, name='mobileIndustries'),
 ]
 
-# If the project is in DEBUG mode (development environment), allow static media file access
+# Si el proyecto está en modo DEBUG (entorno de desarrollo), permitir el acceso a archivos multimedia estáticos
 if settings.DEBUG:
-    # This will serve media files from the MEDIA_URL path and store them in MEDIA_ROOT
+    # Esto servirá archivos multimedia desde la ruta MEDIA_URL y los almacenará en MEDIA_ROOT
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

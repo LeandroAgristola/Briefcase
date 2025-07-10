@@ -1,90 +1,103 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
-from .models import development
+from .models import development # Asumiendo que 'development' es el modelo correcto
 import re
 
-# Custom validator to ensure the field contains only letters
+# Validador personalizado para garantizar que el campo contenga solo letras
 def validateOnlyLetters(value):
     if not value.isalpha():
-        raise ValidationError('This field must contain only letters.')
+        raise ValidationError('Este campo debe contener sólo letras.')
 
-# Custom validator to ensure the field contains only numeric characters
+# Validador personalizado para garantizar que el campo contenga solo caracteres numéricos
 def validateOnlynumbers(value):
     if not re.match(r'^\d+$', value):
-        raise ValidationError('The phone number must contain only numbers.')
+        raise ValidationError('El número de teléfono debe contener solo números.')
 
-# Custom validator to ensure the email address format is valid
+# Validador personalizado para garantizar que el formato de la dirección de correo electrónico sea válido
 def validateOnlyemail(value):
     try:
         validate = EmailValidator()
-        validate(value)  # Validate the email
+        validate(value)
     except ValidationError:
-        raise ValidationError('Please enter a valid email.')  
-    return True 
+        raise ValidationError('Por favor, ingrese un correo electrónico válido.')
+    return True
 
-# Form for the contact page
+# Formulario para la página de contacto
 class contactForm(forms.Form):
-    # Field for the user's first name
+    # Campo para el nombre del usuario
     name = forms.CharField(
         max_length=100,
-        validators=[validateOnlyLetters],  # Ensures only letters are allowed
+        validators=[validateOnlyLetters],
+        label='Nombre', # <--- ¡Aquí está el cambio!
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Ethan'  # Placeholder text for the input field
+            'placeholder': 'Carlos'
         })
     )
-    # Field for the user's last name
+    # Campo para el apellido del usuario
     lastname = forms.CharField(
         max_length=100,
-        validators=[validateOnlyLetters],  # Ensures only letters are allowed
+        validators=[validateOnlyLetters],
+        label='Apellido', # <--- ¡Aquí está el cambio!
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'James'
+            'placeholder': 'Perez'
         })
     )
-    # Field for the user's phone number
+    # Campo para el número de teléfono del usuario
     phonenumber = forms.CharField(
         max_length=20,
-        validators=[validateOnlynumbers],  # Ensures only numbers are allowed
+        validators=[validateOnlynumbers],
+        label='Número de teléfono', # <--- ¡Aquí está el cambio!
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': '0115345456'
         })
     )
-    # Field for the user's email address
+    # Campo para la dirección de correo electrónico del usuario
     email = forms.EmailField(
-        validators=[validateOnlyemail],  # Ensures the email format is valid
+        validators=[validateOnlyemail],
+        label='Correo electrónico', # <--- ¡Aquí está el cambio!
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
-            'placeholder': 'example@djangomail.com'
+            'placeholder': 'ejemplo@djangomail.com' # También ajusté el placeholder
         })
     )
-    # Field for the user's query or message
+    # Campo para la consulta o mensaje del usuario
     consultation = forms.CharField(
+        label='Consulta', # <--- ¡Aquí está el cambio!
         widget=forms.Textarea(attrs={
             'class': 'form-control',
-            'rows': 4,  # Number of rows in the text area
-            'placeholder': 'Write your query here'
+            'rows': 4,
+            'placeholder': 'Escribe tu consulta aquí'
         })
     )
-
-# Model form for adding or editing a development project
+    
+# Formulario modelo para agregar o editar un proyecto de desarrollo
 class DevelopmentForm(forms.ModelForm):
     class Meta:
-        model = development  # Links the form to the 'development' model
-        fields = ['title', 'content', 'image', 'brochurePaper']  # Specifies the fields to include
+        model = development  # Vincula el formulario al modelo 'development'
+        fields = ['title', 'content', 'image', 'brochurePaper']  # Especifica los campos a incluir
 
-        # Customizes the appearance of each field in the form
+        # Esto le dice a Django qué texto debe mostrar para cada etiqueta de campo.
+        labels = {
+            'title': 'Título',            # El campo 'title' se mostrará como 'Título' al usuario.
+            'content': 'Contenido',       # El campo 'content' se mostrará como 'Contenido' al usuario.
+            'image': 'Imagen',            # El campo 'image' se mostrará como 'Imagen' al usuario.
+            'brochurePaper': 'Folleto (PDF)', # El campo 'brochurePaper' se mostrará como 'Folleto (PDF)' al usuario.
+        }
+
+        # Personaliza la apariencia de cada campo en el formulario (widgets)
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter the title'
+                'placeholder': 'Ingresa el título'
             }),
             'content': forms.Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter the content',
-                'rows': 6  # Number of rows in the text area
+                'placeholder': 'Ingresa el contenido',
+                'rows': 6  # Número de filas en el área de texto
             }),
             'image': forms.FileInput(attrs={
                 'class': 'form-control'

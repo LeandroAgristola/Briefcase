@@ -1,78 +1,78 @@
 <!DOCTYPE html>
-<html lang="es-ES"> <!-- Language set to Spanish (Spain) -->
+<html lang="es-ES"><!-- Idioma establecido en español (España) -->
 <head> 
-	{% load static %} <!-- Load static files for the Django template -->
-	<meta charset="utf-8"> <!-- Define character encoding as UTF-8 -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the page responsive -->
-	<meta name="description" content=""> <!-- Meta description for SEO (currently empty) -->
-	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> <!-- Link to Google Fonts for Lato font -->
+	{% load static %} <!-- Cargar archivos estáticos para la plantilla de Django -->
+	<meta charset="utf-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página sea receptiva -->
+	<meta name="description" content=""> <!-- Meta descripción para SEO (actualmente vacía) -->
+	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> <!-- Enlace a Google Fonts para la fuente Lato -->
 
-	{% block css %} <!-- Block to allow custom CSS to be added in child templates -->
-	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}"> <!-- Link to Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styleManagement.css' %}"> <!-- Link to custom stylesheet for management page -->
+	{% block css %} <!-- Bloque para permitir que se agreguen CSS personalizados en plantillas secundarias -->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}"> <!-- Enlace a Bootstrap CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styleManagement.css' %}"> <!-- Enlace a la hoja de estilo personalizada para la página de gestión -->
 	{% endblock %}
 
-	<link rel="icon" type="image/x-icon" href="{% static 'logo/favicon.ico' %}"> <!-- Link to the website favicon -->
+	<link rel="icon" type="image/x-icon" href="{% static 'logo/favicon.ico' %}"> <!-- Enlace al favicon del sitio web -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" 
-	crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Link to FontAwesome for icons -->
+	crossorigin="anonymous" referrerpolicy="no-referrer" /> <!-- Enlace a FontAwesome para los iconos -->
 
-	<title>{% block title %}Realestate Management{% endblock %}</title> <!-- Title of the webpage, customizable in child templates -->
+	<title>{% block title %}Realestate Management{% endblock %}</title> <!-- Título de la página web, personalizable en plantillas secundarias -->
 </head>
 	<body>
-		<div class="container-fluid"> <!-- Full-width container for the layout -->
-			<div class="row"> <!-- Bootstrap row for grid layout -->
+		<div class="container-fluid"> <!-- Contenedor de ancho completo para el diseño -->
+			<div class="row"> <!-- Fila de Bootstrap para el diseño de cuadrícula -->
 				<nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar vh-100 position-fixed">
-					<!-- Sidebar navigation, fixed to the left of the screen with a vertical height of 100% -->
+					<!-- Navegación de la barra lateral, fija a la izquierda de la pantalla con una altura vertical del 100% -->
 					<div class="position-sticky d-flex flex-column align-items-center p-3">
-						<img src="{% static 'logo/logo.png' %}" alt="logo" class="logo-img me-2" style="max-width: 120px;"> <!-- Logo image -->
-						<h1 class="text-center logo-text">Realestate</h1> <!-- Main title for the sidebar -->
-						<h4 class="text-center">Management</h4> <!-- Subtitle for the sidebar -->
-						<hr style="border-top: 2px solid black; width: 100%;"> <!-- Horizontal line separator -->
-						<ul class="nav flex-column w-100"> <!-- Vertical navigation list -->
+						<img src="{% static 'logo/logo.png' %}" alt="logo" class="logo-img me-2" style="max-width: 120px;"> <!-- Imagen del logo -->
+						<h1 class="text-center logo-text">Realestate</h1> <!-- Título principal para la barra lateral -->
+						<h4 class="text-center">Management</h4> <!-- Subtítulo para la barra lateral -->
+						<hr style="border-top: 2px solid black; width: 100%;"> <!-- Línea horizontal separadora -->
+						<ul class="nav flex-column w-100"> <!-- Lista de navegación vertical -->
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'home' %}">Home</a> <!-- Home link -->
+								<a class="nav-link" href="{% url 'home' %}">Home</a> <!-- Enlace a la página de inicio -->
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'management' %}">Development List</a> <!-- Link to development list -->
+								<a class="nav-link" href="{% url 'management' %}">Lista de desarrollos</a> <!-- Enlace a la lista de desarrollos -->
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'add_development' %}">Add Development</a> <!-- Link to add a new development -->
+								<a class="nav-link" href="{% url 'add_development' %}">Agregar desarrollo</a> <!-- Enlace para agregar un nuevo desarrollo -->
 							</li>
 							<li class="nav-item">
-								<a class="nav-link text-danger" href="{% url 'logout' %}">Logout</a> <!-- Logout link with red text -->
+								<a class="nav-link text-danger" href="{% url 'logout' %}">Cerrar sesión</a> <!-- Enlace de cierre de sesión con texto rojo -->
 							</li>
 						</ul>
 					</div>
 				</nav>
 		
-				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-left: 16.7%;"> <!-- Main content area, offset by 16.7% for sidebar -->
-					{% block content %} <!-- Content block, customizable in child templates -->
+				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="margin-left: 16.7%;"> <!-- Área de contenido principal, desplazada en un 16,7 % para la barra lateral -->
+					{% block content %} <!-- Bloque de contenido, personalizable en plantillas secundarias -->
 					{% endblock %}
 				</main>
 			</div>
 		</div>
-		
-		{% block scripts %} <!-- Block to allow custom scripts to be added in child templates -->
+
+		{% block scripts %} <!-- Bloque para permitir la adición de scripts personalizados en plantillas secundarias -->
 		<script>
-			// Script to show or hide the delete button depending on the state of the checkboxes
+			// Script para mostrar u ocultar el botón de eliminar dependiendo del estado de las casillas de verificación
 			document.addEventListener("DOMContentLoaded", function () {
 				const checkboxes = document.querySelectorAll('input[name="development_ids"]');
 				const deleteButtonContainer = document.getElementById("delete-button-container");
 
-				// Toggle the delete button visibility
+				// Alternar la visibilidad del botón de eliminar
 				function toggleDeleteButton() {
 					const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
 					deleteButtonContainer.style.display = anyChecked ? "block" : "none";
 				}
 
-				// Add change event listener to each checkbox
+				// Agregar un detector de eventos de cambio a cada casilla de verificación
 				checkboxes.forEach(checkbox => {
 					checkbox.addEventListener("change", toggleDeleteButton);
 				});
 			});
 		</script>
-		<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> <!-- Link to Bootstrap JS bundle -->
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> <!-- Enlace al paquete Bootstrap JS -->
 		{% endblock %}
 	</body>
 </html>

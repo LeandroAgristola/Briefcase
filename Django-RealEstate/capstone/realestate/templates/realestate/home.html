@@ -4,21 +4,21 @@
 
 {% block content %}
 
-<!-- Hero Section: Displays the title and carousel of developments -->
+<!-- Sección Hero: Muestra el título y el carrusel de desarrollos -->
 <section id="hero">
 	<div class="container">
-		<h1>Developments</h1>
+		<h1>Desarrollos</h1>
 		<div class="container" id="containerCarusel">
 			<div class="carousel slide" id="carousel1" data-bs-ride="carousel">
 				
-				<!-- Carousel Indicators: Dynamically generated based on developments -->
+				<!-- Indicadores de carrusel: generados dinámicamente en función de los desarrollos -->
 				<ul class="carousel-indicators" style="list-style-type:none;">
 					{% for development in developments %}
 						<li data-bs-target="#carousel1" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
 					{% endfor %}
 				</ul>
 
-				<!-- Carousel Inner: Contains all the items with development information -->
+				<!-- Carrusel interno: Contiene todos los elementos con información de desarrollo -->
 				<div class="carousel-inner">
 					{% for development in developments %}
 						<div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -36,7 +36,7 @@
 					{% endfor %}
 				</div>
 
-				<!-- Carousel Controls for navigating through items -->
+				<!-- Controles de carrusel para navegar a través de los elementos -->
 				<a class="carousel-control-prev" href="#carousel1" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="sr-only"></span>
@@ -51,28 +51,26 @@
 	</div>
 </section>
 
-<!-- Company Section: Video and description about the company -->
+<!-- Sección de la empresa: Video y descripción sobre la empresa -->
 <section id="company"> 
 	<div class="container">
 		<div class="row">
 			
-			<!-- Video section -->
+			<!-- Sección de video -->
 			<div class="col-md-6 d-flex justify-content-center align-items-center">
 				<video id="myVideo" class="w-100" autoplay loop muted>
 					<source src="{% static 'img/video.mp4' %}" type="video/mp4">
-					Your browser does not support the video tag.
+					Su navegador no soporta la etiqueta de vídeo.
 				</video>
 			</div>
 			
-			<!-- Text section: Description about the company -->
+			<!-- Sección de texto: Descripción sobre la empresa -->
 			<div class="col-md-6 d-flex justify-content-center align-items-center">
 				<div class="textCompany p-4">
-					<h2>About <br> <span class="accent_color">Realestate</span></h2> 
+					<h2>Acerca de <br> <span class="accent_color">Realestate</span></h2>
 					<p>
-						Through the creation, investment and management of these companies, we seek to provide added value and continue to transform the industries to which we belong,
-						improving the customer experience, giving them a differential service and generating returns for our investors. <br><br>
-						We promote a culture of ethics, without egos, synergistic and professional; open-door, creative and
-						different thoughts; with full confidence and delegation in our people; establishing true and long-term relationships.
+					A través de la creación, inversión y gestión de estas empresas, buscamos aportar valor añadido y seguir transformando las industrias a las que pertenecemos, mejorando la experiencia del cliente, brindándole un servicio diferenciado y generando rentabilidad para nuestros inversores. <br><br>
+					Promovemos una cultura ética, sin egoísmos, sinérgica y profesional; de puertas abiertas, creativa y con ideas diferentes; con plena confianza y delegación en nuestra gente; estableciendo relaciones auténticas y a largo plazo.
 					</p>
 				</div>
 			</div>
@@ -80,34 +78,34 @@
 	</div>
 </section>
 
-<!-- Series Section: Contains information about different types of properties -->
+<!-- Sección de la serie: Contiene información sobre diferentes tipos de propiedades -->
 <section id="serie">
 	<div class="container">
 		<h2>Serie <span class="accent_color">Realestate</span></h2> 
 		
-		<!-- Different property types (e.g., Dwelling, Buildings, Industries) -->
+		<!-- Diferentes tipos de propiedades (por ejemplo, Viviendas, Edificios, Industrias) -->
 		<div class="company_data"> 
 			<div class="submenu">
-				<h3>Dwelling</h3> 
-				<p>A unique product that seeks to create a different experience in an environment of enjoyment, support and tranquility,
-					immersed in nature. <br>
-					With units that are delivered fully decorated and equipped, with the most complete amenities and services,
-					and in environments that invite you to breathe nature, enjoyment is the only possible result.
+				<h3>Viviendas</h3> 
+				<p>Un producto único que busca crear una experiencia diferente en un entorno de disfrute, apoyo y tranquilidad,
+					inmerso en la naturaleza. <br>
+					Con unidades que se entregan completamente decoradas y equipadas, con las más completas comodidades y servicios,
+					y en entornos que invitan a respirar naturaleza, el disfrute es el único resultado posible.
 				</p>
 				<a href="{% url 'mobiledDwelling' %}" class="btn btn-light mt-3">+ info</a>
 			</div>
 			<div class="submenu">
-				<h3>Buildings</h3>
-				<p>We develop exclusive Premium residential buildings. We offer the possibility of accessing units in zero list (at cost):
-					at a fixed price, without CAC adjustments, without real estate commissions. Work with low construction and financial risk, with short construction times due to
-					having an already approved project.
+				<h3>Edificios</h3>
+				<p>Desarrollamos edificios residenciales Premium exclusivos. Ofrecemos la posibilidad de acceder a unidades en lista cero (a costo):
+					a un precio fijo, sin ajustes de CAC, sin comisiones inmobiliarias. Trabajamos con bajo riesgo de construcción y financiero, con cortos plazos de construcción debido a
+					contar con un proyecto ya aprobado.
 				</p>
 				<a href="{% url 'mobileBuildings' %}" class="btn btn-light mt-3">+ info</a>
 			</div>
 			<div class="submenu">
-				<h3>Industries</h3>
-				<p>We are specialists in industrial properties and we have a team of professionals in the development and planning of industrial locations.
-					We apply cutting-edge technologies to meet the highest standards in safety and environmental care.
+				<h3>Industrias</h3>
+				<p>Somos especialistas en propiedades industriales y contamos con un equipo de profesionales en el desarrollo y planificación de ubicaciones industriales.
+					Aplicamos tecnologías de vanguardia para cumplir con los más altos estándares en seguridad y cuidado del medio ambiente.
 				</p>
 				<a href="{% url 'mobileIndustries' %}" class="btn btn-light mt-3">+ info</a>
 			</div>
@@ -115,18 +113,18 @@
 	</div>
 </section>
 
-<!-- Contact Section: Form for user inquiries -->
+<!-- Sección de Contacto: Formulario para consultas de usuarios -->
 <section id="contact">
 	<div class="container">
 		<div class="row">
-			<!-- Contact form for users to send messages -->
+			<!-- Formulario de contacto para que los usuarios envíen mensajes -->
 			<div class="col-md-6">
 				<form id="contactForm" method="post" utocomplete="off">
-					<h2>Contact</h2>
+					<h2>Contacto</h2>
 					{% csrf_token %}
 					{{ myform.non_field_errors }}
 					
-					<!-- Loop through form fields dynamically -->
+					<!-- Recorrer dinámicamente los campos del formulario -->
 					{% for field in myform %}
 						<div class="mb-3">
 							<label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
@@ -139,22 +137,22 @@
 						</div>
 					{% endfor %}
 
-					<!-- Submit and Cancel buttons -->
+					<!-- Botones Enviar y Cancelar -->
 					<div class="d-flex align-items-center">
-						<button id="btn-send" type="submit" class="btn btn-primary">Send</button>
-						<button id="btn-cancel" type="reset" class="btn btn-secondary ms-2">Cancel</button>
+						<button id="btn-send" type="submit" class="btn btn-primary">Enviar</button>
+						<button id="btn-cancel" type="reset" class="btn btn-secondary ms-2">Cancelar</button>
 					</div>
 				</form>
 			</div>
 
-			<!-- Image section -->
+			<!-- Sección de imagen -->
 			<div class="col-md-6 d-flex justify-content-center align-items-center">
-				<img src="static/img/contact.jpg" alt="Image contact" class="img-fluid">
+				<img src="static/img/contact.jpg" alt="Imagen de contacto" class="img-fluid">
 			</div>
 		</div>
 	</div>
 
-	<!-- Modal for showing loading spinner during submission -->
+	<!-- Modal para mostrar el indicador de carga durante el envío -->
 	<div class="modal fade" id="loadingModal" tabindex="-1" aria-labelledby="loadingModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content" style="background-color: transparent; border: none;">
@@ -166,15 +164,15 @@
 		</div>
 	</div>
 
-	<!-- Modal for displaying success message after sending the form -->
+	<!-- Modal para mostrar el mensaje de éxito después de enviar el formulario -->
 	<div class="modal fade" id="msjModal" tabindex="-1" aria-labelledby="msjModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered"> 
 			<div class="modal-content">
 				<div class="modal-header d-flex justify-content-center">
-					<h5 class="modal-title" id="mensajeModalLabel">Message Sent</h5>
+					<h5 class="modal-title" id="mensajeModalLabel">Mensaje Enviado</h5>
 				</div>
 				<div class="modal-body d-flex justify-content-center">
-					Your message has been sent successfully.
+					Su mensaje ha sido enviado con éxito.
 				</div>
 				<div class="modal-footer d-flex justify-content-center">
 					<button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Ok</button>
@@ -185,10 +183,10 @@
 
 </section>
 
-<!-- Location Section: Displays the company location on a Google Map -->
+<!-- Sección de Ubicación: Muestra la ubicación de la empresa en un mapa de Google -->
 <section id="location">
 	<div class="container">
-		<h2>Location</h2> 
+		<h2>Ubicación</h2>
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d817.8500541816977!2d-57.953874576704685!3d-34.921498429018776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62e3fc93575%3A0x6ffaec3bf616e000!2sPlaza%20Moreno!5e0!3m2!1ses-419!2spy!4v1635395163842!5m2!1ses-419!2spy" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 	</div>
 </section>
