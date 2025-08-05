@@ -6,22 +6,20 @@ import React from 'react';
 const StyledQuantityButton = styled.button`
   width: 32px;
   height: 32px;
+  font-size: 1.2rem;
+  background-color: #f1f3f5;
+  color: #343a40;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
-  font-size: 1.2rem;
   font-weight: bold;
-  border-radius: 0.25rem; /* Esquinas ligeramente redondeadas */
-  background-color: transparent;
-  color: #343a40;
-  border: 1px solid #343a40;
 
   &:hover {
     background-color: #343a40;
     color: white;
   }
-  /* Estilo para cuando el botón está deshabilitado */
+
   &:disabled {
     cursor: not-allowed;
     opacity: 0.6;

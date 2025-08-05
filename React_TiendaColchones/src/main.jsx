@@ -8,21 +8,24 @@ import { CartProvider } from './context/CartContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { HelmetProvider } from 'react-helmet-async'; 
+import { HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider } from 'styled-components';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
         <CartProvider>
-          <HelmetProvider> 
-            <App />
+          <HelmetProvider>
+            <ThemeProvider theme={{}}> {/* Añade el ThemeProvider aquí */}
+              <App />
+            </ThemeProvider>
           </HelmetProvider>
         </CartProvider>
       </AuthProvider>
       <ToastContainer
-        position="bottom-right" 
-        autoClose={5000} 
+        position="bottom-right"
+        autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
