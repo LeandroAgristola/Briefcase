@@ -104,12 +104,6 @@ function Footer() {
         </div>
       </div>
       {/* Boton de whatsapp */}
-      <a href="https://api.whatsapp.com/send?phone=+5491187654321"
-        className="whatsapp-float"
-        target="_blank"
-        aria-label="Chatea con nosotros por WhatsApp">
-        <FaWhatsapp />
-      </a>
     </footer>
   );
 }

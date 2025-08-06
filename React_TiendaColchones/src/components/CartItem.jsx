@@ -11,36 +11,14 @@ const CardItem = styled.div`
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 `;
 
-const InfoSection = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const HeaderRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const Title = styled.h6`
   font-weight: bold;
   margin-bottom: 0.1rem;
 `;
 
-const Price = styled.span`
-  font-size: 1.1rem;
-  color: #e4231f;
-  font-weight: bold;
-`;
-
-const QuantityWrapper = styled.div`
-  margin-top: 0.5rem;
-`;
-
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 120px 80px; /* Fijamos ancho para botones y precio */
+  grid-template-columns: 1fr 120px 80px;
   align-items: center;
   gap: 1rem;
 
@@ -51,13 +29,38 @@ const GridContainer = styled.div`
   .producto-cantidad {
     justify-self: end;
   }
-
+  
   .producto-precio {
     justify-self: end;
     font-size: 1.1rem;
     font-weight: bold;
     color: #e4231f;
     white-space: nowrap;
+  }
+
+  /* Media Query para pantallas móviles */
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+`;
+
+const MobileControlsWrapper = styled.div`
+  display: none; // Oculto por defecto en desktop
+  @media (max-width: 768px) {
+    display: flex; // Visible solo en móvil
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+`;
+
+const DesktopControlsWrapper = styled.div`
+  display: contents; // Muestra los hijos directamente sin un contenedor extra
+  @media (max-width: 768px) {
+    display: none; // Oculto en móvil
   }
 `;
 
@@ -72,25 +75,41 @@ function CartItem({ item, onIncrement, onDecrement }) {
     }).format(numericPrice);
   };
 
-    return (
+  return (
     <CardItem>
-        <GridContainer>
+      <GridContainer>
         <div className="producto-nombre">
-            <Title>{item.nombre}</Title>
+          <Title>{item.nombre}</Title>
         </div>
-        <div className="producto-cantidad">
+
+        {/* Versión para escritorio: elementos separados para la grid */}
+        <DesktopControlsWrapper>
+          <div className="producto-cantidad">
             <QuantityControls
+              quantity={item.cantidad}
+              onIncrement={() => onIncrement(item)}
+              onDecrement={() => onDecrement(item.id)}
+            />
+          </div>
+          <div className="producto-precio">
+            <span>{formatPrice(parseFloat(item.precio) * item.cantidad)}</span>
+          </div>
+        </DesktopControlsWrapper>
+
+        {/* Versión para móvil: contenedor agrupado */}
+        <MobileControlsWrapper>
+          <QuantityControls
             quantity={item.cantidad}
             onIncrement={() => onIncrement(item)}
             onDecrement={() => onDecrement(item.id)}
-            />
-        </div>
-        <div className="producto-precio">
-            <Price>{formatPrice(parseFloat(item.precio) * item.cantidad)}</Price>
-        </div>
-        </GridContainer>
+          />
+          <div className="producto-precio">
+            <span>{formatPrice(parseFloat(item.precio) * item.cantidad)}</span>
+          </div>
+        </MobileControlsWrapper>
+      </GridContainer>
     </CardItem>
-    );
+  );
 }
 
 export default CartItem;

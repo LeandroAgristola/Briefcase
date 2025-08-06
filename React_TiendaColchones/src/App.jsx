@@ -11,7 +11,8 @@ import ProductoDetalle from './pages/ProductoDetalle.jsx';
 import AdminPanel from './pages/AdminPanel.jsx';
 import OfertasPage from './pages/OfertasPage.jsx';
 import MasVendidosPage from './pages/MasVendidosPage.jsx';
-import { Helmet } from 'react-helmet-async'; 
+import { Helmet } from 'react-helmet-async';
+import WhatsappButton from './components/WhatsappButton.jsx';
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
           <Route path="/datos-personales" element={<div className="container py-5"><h2>Datos Personales (En construcción)</h2><p>Aquí podrás ver y editar tus datos de perfil.</p></div>} />
         </Routes>
       </main>
+      <WhatsappButton />
+      
       <Footer />
     </>
   );
